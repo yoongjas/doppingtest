@@ -81,9 +81,9 @@ function showPage(pageId) {
     currentPage = pageId;
     
     // 특정 페이지별 초기화
-    if (pageId === 'main') {
+    if (pageId === 'main-page') {
         loadRankings();
-    } else if (pageId === 'quiz') {
+    } else if (pageId === 'quiz-page') {
         showQuestion(0);
     }
 }
@@ -307,7 +307,7 @@ function showResult(score, rank) {
         <p>아래에서 실시간 랭킹을 확인해보세요!</p>
     `;
     
-    showPage('result');
+    showPage('result-page');
     
     // 랭킹 새로고침
     setTimeout(loadRankings, 1000);
@@ -317,12 +317,12 @@ function showResult(score, rank) {
 document.addEventListener('DOMContentLoaded', function() {
     // 시작 버튼
     document.getElementById('start-btn').addEventListener('click', () => {
-        showPage('info');
+        showPage('info-page');
     });
     
     // 뒤로가기 버튼
     document.getElementById('back-to-main').addEventListener('click', () => {
-        showPage('main');
+        showPage('main-page');
     });
     
     // 참여자 정보 폼 제출
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentQuestionIndex = 0;
         userAnswers = {};
         
-        showPage('quiz');
+        showPage('quiz-page');
     });
     
     // 퀴즈 네비게이션
@@ -352,11 +352,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('retry-btn').addEventListener('click', () => {
         currentQuestionIndex = 0;
         userAnswers = {};
-        showPage('quiz');
+        showPage('quiz-page');
     });
     
     document.getElementById('home-btn').addEventListener('click', () => {
-        showPage('main');
+        showPage('main-page');
     });
     
     // 초기 랭킹 로드
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 실시간 랭킹 업데이트 (5초마다)
 setInterval(() => {
-    if (currentPage === 'main') {
+    if (currentPage === 'main-page') {
         loadRankings();
     }
 }, 5000);
