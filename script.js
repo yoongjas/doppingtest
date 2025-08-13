@@ -5,7 +5,7 @@ let userAnswers = {};
 let participantInfo = {};
 
 // 백엔드 API URL (Railway 배포 후 업데이트 필요)
-const API_BASE_URL = 'https://your-railway-app.railway.app';
+const API_BASE_URL = 'https://doppingtest-production.up.railway.app';
 
 // 퀴즈 데이터
 const questions = [
