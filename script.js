@@ -73,9 +73,9 @@ const questions = [
     {
         id: 7,
         type: 'ox',
-        question: '도핑은 고양이를 키우고 있다.',
+        question: '도핑은 애완동물(개, 고양이 등)을 키우고 있다.',
         options: ['O', 'X'],
-        correctAnswer: 'O'
+        correctAnswer: 'X'
     },
     {
         id: 8,
@@ -88,7 +88,7 @@ const questions = [
             '떡볶이',
             '햄버거'
         ],
-        correctAnswer: '치킨'
+        correctAnswer: '떡볶이'
     },
     {
         id: 9,
@@ -107,7 +107,7 @@ const questions = [
             '가을',
             '겨울'
         ],
-        correctAnswer: '가을'
+        correctAnswer: '겨울'
     }
 ];
 

@@ -25,6 +25,17 @@ CREATE TABLE IF NOT EXISTS participants (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- 기존 테이블에 IP 주소 컬럼 추가 (테이블이 이미 존재하는 경우)
+DO $$ 
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns 
+        WHERE table_name = 'participants' AND column_name = 'ip_address'
+    ) THEN
+        ALTER TABLE participants ADD COLUMN ip_address VARCHAR(45);
+    END IF;
+END $$;
+
 -- 인덱스 생성 (성능 최적화)
 CREATE INDEX IF NOT EXISTS idx_participants_score ON participants(score DESC);
 CREATE INDEX IF NOT EXISTS idx_participants_created_at ON participants(created_at DESC);
