@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도핑테스트 - 도핑을 얼마나 알고 있나요?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 메인 페이지 -->
+        <div id="main-page" class="page active">
+            <div class="container">
+                <div class="header">
+                    <h1 class="title">도핑테스트</h1>
+                    <p class="subtitle">나를 얼마나 알고 있나요? 💕</p>
+                </div>
+                
+                <div class="intro-section">
+                    <div class="intro-card">
+                        <h2>이 테스트는 도핑을 향한 애정도를 평가하기 위해 생겨났어요</h2>
+                        <p>도핑에 대해 얼마나 알고 계신가요? 퀴즈를 풀어보고 실시간 랭킹에서 순위를 확인해보세요!</p>
+                        <div class="gift-notice">
+                            <span class="gift-icon">🎁</span>
+                            <p><strong>1등부터 3등까지는 선물을 드려요!</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ranking-section">
+                    <h3>실시간 랭킹</h3>
+                    <div id="ranking-list" class="ranking-list">
+                        <div class="loading">랭킹을 불러오는 중...</div>
+                    </div>
+                </div>
+
+                <div class="start-section">
+                    <button id="start-btn" class="cloud-btn">
+                        <span class="cloud-icon">☁️</span>
+                        참여하기
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 참여자 정보 입력 페이지 -->
+        <div id="info-page" class="page">
+            <div class="container">
+                <div class="header">
+                    <h2>참여자 정보</h2>
+                    <p>테스트를 시작하기 전에 정보를 입력해주세요</p>
+                </div>
+
+                <form id="participant-form" class="form">
+                    <div class="form-group">
+                        <label for="nickname">엑스(X) 계정명</label>
+                        <input type="text" id="nickname" name="nickname" required placeholder="@닉네임">
+                    </div>
+
+                    <div class="form-group">
+                        <label>희망하는 선물을 고르세요</label>
+                        <div class="gift-levels">
+                            <div class="gift-level">
+                                <h4>1등 선물</h4>
+                                <div class="gift-options">
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift1" value="스타벅스5만원" required>
+                                        <span>스타벅스 5만원</span>
+                                    </label>
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift1" value="치킨5만원" required>
+                                        <span>치킨 5만원</span>
+                                    </label>
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift1" value="올리브영5만원" required>
+                                        <span>올리브영 5만원</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="gift-level">
+                                <h4>2등 선물</h4>
+                                <div class="gift-options">
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift2" value="스타벅스3만원" required>
+                                        <span>스타벅스 3만원</span>
+                                    </label>
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift2" value="치킨3만원" required>
+                                        <span>치킨 3만원</span>
+                                    </label>
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift2" value="올리브영3만원" required>
+                                        <span>올리브영 3만원</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="gift-level">
+                                <h4>3등 선물</h4>
+                                <div class="gift-options">
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift3" value="스타벅스1만원" required>
+                                        <span>스타벅스 1만원</span>
+                                    </label>
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift3" value="치킨1만원" required>
+                                        <span>치킨 1만원</span>
+                                    </label>
+                                    <label class="gift-option">
+                                        <input type="radio" name="gift3" value="올리브영1만원" required>
+                                        <span>올리브영 1만원</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" id="back-to-main" class="btn secondary">뒤로가기</button>
+                        <button type="submit" class="btn primary">테스트 시작</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 퀴즈 페이지 -->
+        <div id="quiz-page" class="page">
+            <div class="container">
+                <div class="quiz-header">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <div class="question-counter">
+                        <span id="current-question">1</span> / <span id="total-questions">6</span>
+                    </div>
+                </div>
+
+                <div id="quiz-content" class="quiz-content">
+                    <!-- 퀴즈 내용이 동적으로 로드됩니다 -->
+                </div>
+
+                <div class="quiz-buttons">
+                    <button id="prev-btn" class="btn secondary" style="display: none;">이전</button>
+                    <button id="next-btn" class="btn primary">다음</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 결과 페이지 -->
+        <div id="result-page" class="page">
+            <div class="container">
+                <div class="result-header">
+                    <h2>테스트 완료! 🎉</h2>
+                </div>
+
+                <div id="result-content" class="result-content">
+                    <!-- 결과 내용이 동적으로 로드됩니다 -->
+                </div>
+
+                <div class="result-buttons">
+                    <button id="retry-btn" class="btn secondary">다시하기</button>
+                    <button id="home-btn" class="btn primary">홈으로</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
