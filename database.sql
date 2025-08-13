@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS participants (
     answers JSONB,
     gifts JSONB,
     score_adjustment_reason TEXT,
+    ip_address VARCHAR(45),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -28,6 +29,7 @@ CREATE TABLE IF NOT EXISTS participants (
 CREATE INDEX IF NOT EXISTS idx_participants_score ON participants(score DESC);
 CREATE INDEX IF NOT EXISTS idx_participants_created_at ON participants(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_participants_nickname ON participants(nickname);
+CREATE INDEX IF NOT EXISTS idx_participants_ip_address ON participants(ip_address);
 
 -- 업데이트 트리거 함수 생성 (search_path 설정 추가)
 CREATE OR REPLACE FUNCTION update_updated_at_column()

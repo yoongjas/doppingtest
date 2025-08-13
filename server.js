@@ -69,54 +69,52 @@ app.post('/api/submit', async (req, res) => {
             return res.status(400).json({ error: '필수 정보가 누락되었습니다.' });
         }
         
-        // 기존 참여자 확인
+        // IP 주소 가져오기
+        const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+        
+        // 기존 참여자 확인 (닉네임 또는 IP로)
         const { data: existingParticipant } = await supabase
             .from('participants')
-            .select('id, score')
-            .eq('nickname', nickname)
+            .select('id, score, nickname, ip_address')
+            .or(`nickname.eq.${nickname},ip_address.eq.${clientIP}`)
             .single();
         
         let participantId;
         
         if (existingParticipant) {
-            // 기존 참여자 업데이트 (더 높은 점수로)
-            if (score > existingParticipant.score) {
-                const { error: updateError } = await supabase
-                    .from('participants')
-                    .update({ 
-                        score: score,
-                        answers: answers,
-                        gifts: gifts,
-                        updated_at: new Date().toISOString()
-                    })
-                    .eq('id', existingParticipant.id);
-                
-                if (updateError) {
-                    console.error('참여자 업데이트 오류:', updateError);
-                    return res.status(500).json({ error: '결과 저장에 실패했습니다.' });
-                }
-            }
-            participantId = existingParticipant.id;
-        } else {
-            // 새 참여자 추가
-            const { data: newParticipant, error: insertError } = await supabase
-                .from('participants')
-                .insert([{
-                    nickname: nickname,
-                    score: score,
-                    answers: answers,
-                    gifts: gifts
-                }])
-                .select('id')
-                .single();
-            
-            if (insertError) {
-                console.error('참여자 추가 오류:', insertError);
-                return res.status(500).json({ error: '결과 저장에 실패했습니다.' });
+            // 중복 참여 방지: 같은 닉네임이나 IP로 이미 참여한 경우
+            if (existingParticipant.nickname === nickname) {
+                return res.status(400).json({ 
+                    error: '이미 같은 닉네임으로 참여하셨습니다. 다른 닉네임을 사용해주세요.' 
+                });
             }
             
-            participantId = newParticipant.id;
+            if (existingParticipant.ip_address === clientIP) {
+                return res.status(400).json({ 
+                    error: '이미 이 기기에서 참여하셨습니다. 다른 기기에서 참여해주세요.' 
+                });
+            }
         }
+        
+        // 새 참여자 추가
+        const { data: newParticipant, error: insertError } = await supabase
+            .from('participants')
+            .insert([{
+                nickname: nickname,
+                score: score,
+                answers: answers,
+                gifts: gifts,
+                ip_address: clientIP
+            }])
+            .select('id')
+            .single();
+        
+        if (insertError) {
+            console.error('참여자 추가 오류:', insertError);
+            return res.status(500).json({ error: '결과 저장에 실패했습니다.' });
+        }
+        
+        participantId = newParticipant.id;
         
         // 현재 순위 조회
         const { data: rankings } = await supabase

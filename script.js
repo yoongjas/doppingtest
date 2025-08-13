@@ -30,9 +30,9 @@ const questions = [
         type: 'image_choice',
         question: '이중 도핑이 가장 좋아하는 남자연예인은?',
         options: [
-            { name: '홍경', image: 'https://via.placeholder.com/200x150/ffd1dc/333?text=홍경' },
-            { name: '김우빈', image: 'https://via.placeholder.com/200x150/fffacd/333?text=김우빈' },
-            { name: '이도현', image: 'https://via.placeholder.com/200x150/87ceeb/333?text=이도현' }
+            { name: '홍경', image: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA5MjNfMjU0%2FMDAxNjk1NDU1MjM2NTkx.nfsxq1krmNIsk-fE_a-60q6SwL-zQ5hgnUM0M2dFgwIg.XUQ4VIt83Q7tykBY5Bn9J9sz2jqmtbznao1q0S0RXg0g.JPEG.kbeautynews%2F%25B9%25E8%25BF%25EC_%25C8%25AB%25B0%25E6_%25C7%25C1%25B7%25CE%25C7%25CA_%25BB%25E7%25C1%25F8%2528%25BB%25E7%25C1%25F8%25C1%25A6%25B0%25F8-%25B8%25C5%25B4%25CF%25C1%25F6%25B8%25D5%25C6%25AEmmm%2529.jpg&type=sc960_832' },
+            { name: '김우빈', image: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F410%2F2024%2F09%2F12%2F0001023296_001_20240912192110594.png&type=sc960_832' },
+            { name: '이도현', image: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDAxMTdfMTYw%2FMDAxNzA1NDgzNzUxMDI2.RLdl05gz9Pni6bZL-pg-yinQJ3uFmZyIUzRPvQt-5MMg.LJ5jr2F6m88d6QNpHMzUNdv4fGWq2OzRqeB08MRhOpEg.JPEG.skt9386%2FScreenshot_2024-01-17_at_18.18.27.JPG&type=sc960_832' }
         ],
         correctAnswer: '김우빈'
     },
@@ -41,11 +41,12 @@ const questions = [
         type: 'image_choice',
         question: '이중 도핑이 가장 싫어하는 엑스 유저는?',
         options: [
-            { name: '최범', image: 'https://via.placeholder.com/200x150/ffd1dc/333?text=최범' },
-            { name: '박군', image: 'https://via.placeholder.com/200x150/fffacd/333?text=박군' },
-            { name: '토오지', image: 'https://via.placeholder.com/200x150/87ceeb/333?text=토오지' },
-            { name: '수달킴', image: 'https://via.placeholder.com/200x150/ffb6c1/333?text=수달킴' },
-            { name: '카페인', image: 'https://via.placeholder.com/200x150/98d8e8/333?text=카페인' }
+            { name: '최범', image: 'https://pbs.twimg.com/profile_images/1954562991816667136/9uuc1m6d_400x400.jpg' },
+            { name: '박군', image: 'https://pbs.twimg.com/profile_images/1954893088633344001/wVedS5Q8_400x400.jpg' },
+            { name: '토오지', image: 'https://pbs.twimg.com/profile_images/1914099096023158784/YfRdN5wG_400x400.jpg' },
+            { name: '수달킴', image: 'https://pbs.twimg.com/profile_images/1942070279317917696/9ucxD4l5_400x400.jpg' },
+            { name: '카페인', image: 'https://pbs.twimg.com/profile_images/1943100424342683648/4D0hvBSO_400x400.jpg' },
+            { name: '샤펜', image: 'https://pbs.twimg.com/profile_images/1918247225656033280/pudxrp8U_400x400.jpg' }
         ],
         correctAnswer: '최범'
     },
@@ -63,9 +64,50 @@ const questions = [
         options: [
             '초호화 세련된 단독주택 in 한남동',
             '부비트랩과 지뢰가 설치된 아무도 들어올 수 없는 고립 주택 in 인적없는 곳',
-            '대학병원 및 핫한 플레이스가 가득한 지역 아파트 in 서울'
+            '대학병원 및 핫한 플레이스가 가득한 지역 아파트 in 서울',
+            '너른 동해 바다가 보이는 펜트하우스 in 부산 해운대',
+            '숲속에 지어진 나무 오두막 in 제주도'
         ],
         correctAnswer: '부비트랩과 지뢰가 설치된 아무도 들어올 수 없는 고립 주택 in 인적없는 곳'
+    },
+    {
+        id: 7,
+        type: 'ox',
+        question: '도핑은 고양이를 키우고 있다.',
+        options: ['O', 'X'],
+        correctAnswer: 'O'
+    },
+    {
+        id: 8,
+        type: 'choice',
+        question: '도핑이 가장 좋아하는 음식은?',
+        options: [
+            '치킨',
+            '피자',
+            '초밥',
+            '떡볶이',
+            '햄버거'
+        ],
+        correctAnswer: '치킨'
+    },
+    {
+        id: 9,
+        type: 'ox',
+        question: '도핑은 운동을 좋아한다.',
+        options: ['O', 'X'],
+        correctAnswer: 'X'
+    },
+    {
+        id: 10,
+        type: 'choice',
+        question: '도핑이 가장 좋아하는 계절은?',
+        options: [
+            '봄',
+            '여름',
+            '가을',
+            '겨울'
+        ],
+        correctAnswer: '가을'
     }
 ];
 
@@ -289,6 +331,14 @@ async function submitQuiz() {
         });
         
         const result = await response.json();
+        
+        if (result.error) {
+            // 중복 참여 오류 처리
+            alert(result.error);
+            showPage('info-page');
+            return;
+        }
+        
         showResult(score, result.rank);
     } catch (error) {
         console.error('결과 제출 실패:', error);
